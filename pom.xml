@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project ID & Version -->
+    <groupId>com.servercurio.fabric</groupId>
+    <artifactId>fabric-bom</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+
+    <!-- Project Packaging -->
+    <packaging>pom</packaging>
+
+    <!-- Project Properties -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
+
+        <!-- Apache Maven Build Plugins -->
+        <plugin.maven.surefire.version>2.22.2</plugin.maven.surefire.version>
+        <plugin.maven.jar.version>3.2.0</plugin.maven.jar.version>
+        <plugin.maven.compiler.version>3.8.1</plugin.maven.compiler.version>
+        <plugin.maven.dependency.version>3.1.2</plugin.maven.dependency.version>
+        <plugin.maven.javadoc.version>3.2.0</plugin.maven.javadoc.version>
+        <plugin.maven.assembly.version>3.3.0</plugin.maven.assembly.version>
+        <plugin.maven.resources.version>3.1.0</plugin.maven.resources.version>
+        <plugin.maven.install.version>2.5.2</plugin.maven.install.version>
+        <plugin.maven.clean.version>3.1.0</plugin.maven.clean.version>
+        <plugin.maven.deploy.version>2.8.2</plugin.maven.deploy.version>
+        <plugin.maven.pmd.version>3.13.0</plugin.maven.pmd.version>
+        <plugin.maven.spotbugs.version>4.0.4</plugin.maven.spotbugs.version>
+        <plugin.maven.checkstyle.version>3.1.1</plugin.maven.checkstyle.version>
+
+        <!-- Third-party Build Plugins -->
+        <plugin.git.commitid.version>4.0.0</plugin.git.commitid.version>
+        <plugin.ow2.asm.version>8.0.1</plugin.ow2.asm.version>
+
+        <!-- SonarQube Properties -->
+        <plugin.jacoco.version>0.8.5</plugin.jacoco.version>
+        <plugin.sonar.version>3.7.0.1746</plugin.sonar.version>
+        <plugin.pmd.version>6.26.0</plugin.pmd.version>
+        <plugin.spotbugs.version>4.1.1</plugin.spotbugs.version>
+        <plugin.checkstyle.version>8.35</plugin.checkstyle.version>
+
+        <sonar.organization>servercurio</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+
+        <!-- Spring Libraries -->
+        <dep.spring.core.version>5.2.7.RELEASE</dep.spring.core.version>
+        <dep.spring.data.version>Neumann-SR1</dep.spring.data.version>
+        <dep.spring.security.version>5.3.2.RELEASE</dep.spring.security.version>
+        <dep.spring.session.version>Dragonfruit-RELEASE</dep.spring.session.version>
+        <dep.spring.batch.version>4.2.4.RELEASE</dep.spring.batch.version>
+        <dep.spring.ldap.version>2.3.3.RELEASE</dep.spring.ldap.version>
+        <dep.spring.statemachine.version>2.2.0.RELEASE</dep.spring.statemachine.version>
+        <dep.spring.boot.version>2.3.1.RELEASE</dep.spring.boot.version>
+
+        <!-- Atomix Cluster -->
+        <dep.atomix.version>3.1.8</dep.atomix.version>
+
+        <!-- Portmapper -->
+        <dep.portmapper.version>2.0.5</dep.portmapper.version>
+
+        <!-- Logging Libraries -->
+        <dep.logback.version>1.3.0-alpha5</dep.logback.version>
+        <dep.slf4j.version>2.0.0-alpha1</dep.slf4j.version>
+
+        <!-- Apache Commons Libraries -->
+        <dep.commons.lang3.version>3.11</dep.commons.lang3.version>
+        <dep.commons.collections4.version>4.4</dep.commons.collections4.version>
+        <dep.commons.io.version>2.7</dep.commons.io.version>
+
+        <!-- Cryptography & Security Libraries -->
+        <dep.bouncycastle.version>1.66</dep.bouncycastle.version>
+
+        <!-- Image Libraries -->
+        <dep.metadata.extractor.version>2.14.0</dep.metadata.extractor.version>
+
+        <!-- JSR-380 Bean Validation -->
+        <dep.javax.validation.version>2.0.1.Final</dep.javax.validation.version>
+
+        <!-- Test Libraries -->
+        <dep.junit.jupiter.version>5.6.2</dep.junit.jupiter.version>
+        <dep.junit.platform.version>1.6.2</dep.junit.platform.version>
+    </properties>
+
+
+    <!-- Project Dependency Management -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Framework -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${dep.spring.core.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-releasetrain</artifactId>
+                <version>${dep.spring.data.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${dep.spring.security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-bom</artifactId>
+                <version>${dep.spring.session.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-bom</artifactId>
+                <version>${dep.spring.statemachine.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-core</artifactId>
+                <version>${dep.spring.ldap.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-ldif-core</artifactId>
+                <version>${dep.spring.ldap.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.batch</groupId>
+                <artifactId>spring-batch-core</artifactId>
+                <version>${dep.spring.batch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.batch</groupId>
+                <artifactId>spring-batch-infrastructure</artifactId>
+                <version>${dep.spring.batch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.batch</groupId>
+                <artifactId>spring-batch-integration</artifactId>
+                <version>${dep.spring.batch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${dep.spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Logging -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${dep.logback.version}</version>
+            </dependency>
+
+            <!-- Apache Commons -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${dep.commons.lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${dep.commons.collections4.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${dep.commons.io.version}</version>
+            </dependency>
+
+            <!-- BouncyCastle -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15on</artifactId>
+                <version>${dep.bouncycastle.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcmail-jdk15on</artifactId>
+                <version>${dep.bouncycastle.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpkix-jdk15on</artifactId>
+                <version>${dep.bouncycastle.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpg-jdk15on</artifactId>
+                <version>${dep.bouncycastle.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bctls-jdk15on</artifactId>
+                <version>${dep.bouncycastle.version}</version>
+            </dependency>
+
+            <!-- Atomix -->
+            <dependency>
+                <groupId>io.atomix</groupId>
+                <artifactId>atomix</artifactId>
+                <version>${dep.atomix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.atomix</groupId>
+                <artifactId>atomix-raft</artifactId>
+                <version>${dep.atomix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.atomix</groupId>
+                <artifactId>atomix-primary-backup</artifactId>
+                <version>${dep.atomix.version}</version>
+            </dependency>
+
+            <!-- Portmapper -->
+            <dependency>
+                <groupId>com.offbynull.portmapper</groupId>
+                <artifactId>portmapper</artifactId>
+                <version>${dep.portmapper.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-collections4</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-io</groupId>
+                        <artifactId>commons-io</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-lang3</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- JSR-380 Bean Validation -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${dep.javax.validation.version}</version>
+            </dependency>
+
+            <!-- Imaging Libraries -->
+            <dependency>
+                <groupId>com.drewnoakes</groupId>
+                <artifactId>metadata-extractor</artifactId>
+                <version>${dep.metadata.extractor.version}</version>
+            </dependency>
+
+            <!-- JUnit 5 -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${dep.junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-engine</artifactId>
+                <version>${dep.junit.platform.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${dep.junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${dep.junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Profiles -->
+    <profiles>
+        <profile>
+            <id>missing-maven-opts</id>
+            <activation>
+                <property>
+                    <name>!env.MAVEN_OPTS</name>
+                </property>
+            </activation>
+            <properties>
+                <env.MAVEN_OPTS/>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- Project Build Configuration -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plugin.maven.compiler.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>${plugin.ow2.asm.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${plugin.maven.dependency.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${plugin.maven.jar.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${plugin.maven.surefire.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>${plugin.ow2.asm.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${plugin.maven.javadoc.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${plugin.maven.assembly.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${plugin.maven.resources.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${plugin.maven.install.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${plugin.maven.clean.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${plugin.maven.deploy.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>${plugin.git.commitid.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${plugin.jacoco.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>${plugin.maven.pmd.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-core</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-javascript</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-jsp</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${plugin.maven.spotbugs.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.spotbugs</groupId>
+                            <artifactId>spotbugs</artifactId>
+                            <version>${plugin.spotbugs.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${plugin.maven.checkstyle.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>${plugin.checkstyle.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
